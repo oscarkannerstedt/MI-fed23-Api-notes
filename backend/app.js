@@ -3,10 +3,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
-const connection = require('./lib/conn.js');
+// const connection = require('./lib/conn.js');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/index.js');
+var usersRouter = require('./routes/users.js');
+const documentsRouter = require('./routes/documents.js');
 
 var app = express();
 
@@ -19,21 +20,6 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-app.get("/documents", (req, res) => {
-
-    connection.connect((err) => {
-        if (err) console.log("err", err);
-
-        let query = "SELECT * FROM documents";
-
-        connection.query(query, (err, data) => {
-            if (err) console.log("err", err);
-
-            console.log("documents", data);
-            res.json(data);
-        })
-    })
-})
+app.use('/documents', documentsRouter);
 
 module.exports = app;
