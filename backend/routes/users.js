@@ -5,11 +5,23 @@ const connection = require('../lib/conn.js');
 const cors = require('cors');
 router.use(cors());
 
-/* GET users listing. */
+// Get all users
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  const query = "SELECT * FROM users";
+
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.log("error get users", err);
+      res.status(500).json({error: "Error while get all users"});
+      return 
+    }
+
+    console.log("users", data);
+    res.json(data);
+  });
 });
 
+// Create new user
 router.post('/', (req, res) => {
   const {userName, userEmail, userPassword} = req.body;
 
