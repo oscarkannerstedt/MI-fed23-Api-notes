@@ -30,7 +30,7 @@ router.get('/:userId', (req, res) => {
 
     connection.query(query, [userId], (err, data) => {
         if (err) {
-            console.log("Err", err);
+            console.log("err", err);
             res.status(500).json({error: "Error while getting documents from specific user"});
             return;
         }
@@ -39,5 +39,24 @@ router.get('/:userId', (req, res) => {
         res.json(data);
     })
 })
+
+// Create new document for a specific user
+router.post('/', (req, res) => {
+    const { userId, documentName, documentContent } = req.body;
+
+    const query = `INSERT INTO documents (userId, documentName, documentContent) VALUES (?, ?, ?)`;
+    const values = [userId, documentName, documentContent];
+
+    connection.query(query, values, (err, data) => {
+        if (err) {
+            console.log("err", err);
+            res.status(500).json({ error: "Error creating new document" });
+            return;
+        }
+
+        console.log("Document created");
+        res.status(200).json({message: "Document created"});
+    });
+});
 
 module.exports = router;
