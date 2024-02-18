@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     connection.connect((err) => {
         if (err) console.log("err", err);
 
-        let query = "SELECT * FROM documents";
+        let query = "SELECT * FROM documents WHERE done=0";
 
         connection.query(query, (err, data) => {
             if (err) console.log("err", err);
@@ -26,37 +26,93 @@ router.get("/", (req, res) => {
 router.get('/:userId', (req, res) => {
     const userId = req.params.userId;
 
-    const query = "SELECT * FROM documents WHERE userId = ?";
+    connection.connect((err) => {
+        if (err) console.log("err", err);
 
-    connection.query(query, [userId], (err, data) => {
-        if (err) {
-            console.log("err", err);
-            res.status(500).json({error: "Error while getting documents from specific user"});
-            return;
-        }
+        const query = "SELECT * FROM documents WHERE userId = ?";
 
-        console.log("Documents for user:", data);
-        res.json(data);
+        connection.query(query, [userId], (err, data) => {
+            if (err) {
+                console.log("err", err);
+                res.status(500).json({error: "Error while getting documents from specific user"});
+                return;
+            }
+    
+            console.log("Documents for user:", data);
+            res.json(data);
+        });
     })
-})
+});
 
 // Create new document for a specific user
 router.post('/', (req, res) => {
     const { userId, documentName, documentContent } = req.body;
 
-    const query = `INSERT INTO documents (userId, documentName, documentContent) VALUES (?, ?, ?)`;
-    const values = [userId, documentName, documentContent];
+    connection.connect((err) => {
+        if (err) console.log("err", err);
 
-    connection.query(query, values, (err, data) => {
-        if (err) {
-            console.log("err", err);
-            res.status(500).json({ error: "Error creating new document" });
-            return;
-        }
+        const query = `INSERT INTO documents (userId, documentName, documentContent) VALUES (?, ?, ?)`;
+        const values = [userId, documentName, documentContent];
 
-        console.log("Document created");
-        res.status(200).json({message: "Document created"});
+        connection.query(query, values, (err, data) => {
+            if (err) {
+                console.log("err", err);
+                res.status(500).json({ error: "Error creating new document" });
+                return;
+            }
+    
+            console.log("Document created");
+            res.status(200).json({message: "Document created"});
+        });
+    })
+});
+
+//Update document
+router.put('/:id', (req, res) => {
+    const documentId = req.params.id;
+    const { documentName, documentContent } = req.body;
+
+    connection.connect((err) => {
+        if (err) console.log("err", err);
+
+        const query = `UPDATE documents SET documentName = ?, documentContent = ? WHERE id = ?`;
+        const values = [documentName, documentContent, documentId];
+
+        connection.query(query, values, (err, data) => {
+            if (err) {
+                console.log("err", err);
+                res.status(500).json({error: "error update documents"});
+                return;
+            }
+    
+            console.log("document updated");
+            res.status(200).json({message: "Document updated"});
+        });
     });
 });
+
+// Delete document
+router.delete('/:id', (req, res) => {
+    const documentId = req.params.id;
+
+    connection.connect((err) => {
+        if (err) console.log("err", err);
+
+        const query = `UPDATE documents SET deleted=1 WHERE id = ?`
+        const values = [documentId];
+
+        connection.query(query, values, (err, data) => {
+            if (err) {
+                console.log("err", err);
+                res.status(500).json({error: "Error while delete document"});
+                return;
+            }
+
+            console.log("Document deleted");
+            res.status(200).json({message: "Document deleted"});
+        });
+    });
+});
+
 
 module.exports = router;
