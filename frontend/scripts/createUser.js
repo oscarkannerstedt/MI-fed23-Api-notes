@@ -1,9 +1,17 @@
+const createUserForm = document.getElementById('create-user-form');
 const createUserButton = document.getElementById('create-user-btn');
 const userNameInput = document.getElementById('create-user-name');
 const userEmailInput = document.getElementById('create-user-email');
 const userPasswordInput = document.getElementById('create-user-password');
 
 
+function renderCreateUserForm() {
+    createUserForm.style.display = 'block';
+}
+
+function hideCreateUserForm() {
+    createUserForm.style.display = 'none';
+}
 
 createUserButton.addEventListener("click", () => {
     console.log("click on createUserButton");
@@ -42,4 +50,4 @@ async function createUser(newUser) {
 }
 
 
-export {createUser};
+export {createUser, renderCreateUserForm, hideCreateUserForm};

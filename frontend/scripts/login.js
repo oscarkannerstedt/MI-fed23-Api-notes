@@ -1,3 +1,5 @@
+import { init } from "../script.js";
+
 const loginForm = document.getElementById('login-form');
 
 function renderLoginForm() {
@@ -54,7 +56,7 @@ async function logInUser(user) {
             localStorage.setItem('user', JSON.stringify(loggedUser));
             console.log("Succesfully logged in");
             loginForm.innerHTML = "";
-            // init();
+            init();
     })
     .catch((err) => {
         console.log('Failed logged in', err);
