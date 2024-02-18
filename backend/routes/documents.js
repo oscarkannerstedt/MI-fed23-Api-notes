@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     connection.connect((err) => {
         if (err) console.log("err", err);
 
-        let query = "SELECT * FROM documents WHERE done=0";
+        let query = "SELECT * FROM documents WHERE deleted = 0";
 
         connection.query(query, (err, data) => {
             if (err) console.log("err", err);
@@ -29,7 +29,7 @@ router.get('/:userId', (req, res) => {
     connection.connect((err) => {
         if (err) console.log("err", err);
 
-        const query = "SELECT * FROM documents WHERE userId = ?";
+        const query = "SELECT * FROM documents WHERE userId = ? AND deleted = 0";
 
         connection.query(query, [userId], (err, data) => {
             if (err) {
