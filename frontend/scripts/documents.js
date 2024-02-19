@@ -1,3 +1,5 @@
+import { showEditor } from "./documentEditor.js";
+
 
 async function renderUserDocuments(userId) {
     const documents = await fetchUserDocuments(userId);
@@ -53,7 +55,8 @@ function renderSingleDocument(doc) {
     deleteDocumentButton.textContent = 'Delete document';
 
     editDocumentButton.addEventListener("click", () => {
-        // Lägg till funktion för att redigera dokumentet
+        documentElement.remove();
+        showEditor(doc.documentContent, doc.id, doc.documentName);
         console.log("Edit button clicked");
     });
 
