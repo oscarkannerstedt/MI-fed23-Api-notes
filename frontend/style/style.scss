@@ -65,6 +65,78 @@
 }
 
 /*-------------------------------------*/
+/*-------Showing all documents--------*/
+/*-------------------------------------*/
+
+.document-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.9em;
+        color: #666;
+    }
+}
+
+.document-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*-------------------------------------*/
+/*-------Showing single document------*/
+/*-------------------------------------*/
+
+.document {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 10px;
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    .edit-button, .delete-button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .edit-button {
+        background-color: #3498db;
+        color: #fff;
+    }
+
+    .delete-button {
+        background-color: #e74c3c;
+        color: #fff;
+    }
+
+}
+
+/*-------------------------------------*/
 /*---------------Imports--------------*/
 /*-------------------------------------*/
 
