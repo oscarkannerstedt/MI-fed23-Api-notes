@@ -1,4 +1,4 @@
-import { showEditor } from "./documentEditor.js";
+import { showEditor} from "./documentEditor.js";
 
 
 async function renderUserDocuments(userId) {
@@ -93,4 +93,4 @@ async function fetchUserDocuments(userId) {
 
 
 
-export {fetchUserDocuments, renderUserDocuments};
+export {fetchUserDocuments, renderUserDocuments, renderSingleDocument};
