@@ -1,4 +1,5 @@
 import { showEditor} from "./documentEditor.js";
+import { deleteDocument } from "./deleteDocument.js";
 
 
 async function renderUserDocuments(userId) {
@@ -61,8 +62,13 @@ function renderSingleDocument(doc) {
     });
 
     deleteDocumentButton.addEventListener("click", () => {
-        // Lägg till funktion för att radera dokumentet
-        console.log("Delete button clicked");
+        deleteDocument(doc.id)
+        .then((deleted) => {
+            if (deleted) {
+                console.log("document deleted");
+                renderUserDocuments();
+            }
+        })
     });
 
     documentElement.append(documentName, documentContent, createDate, updateDate, editDocumentButton, deleteDocumentButton);
@@ -73,7 +79,7 @@ function renderSingleDocument(doc) {
 async function fetchUserDocuments(userId) {
     try {
         // const response = await fetch(`http://localhost:3000/documents/${userId}`);
-        const response = await fetch(`http://localhost:3000/documents`);
+        const response = await fetch('http://localhost:3000/documents');
         if (!response.ok) {
             throw new Error("Failed to fetch user documents");
         }
@@ -81,7 +87,7 @@ async function fetchUserDocuments(userId) {
         console.log("data", data);
         return data;
     } catch (err) {
-        console.error("err", err);
+        console.log("err", err);
         return;
     }
 }
