@@ -32,6 +32,7 @@ function showEditor(documentContent, id, documentName) {
     editorContainer.parentElement.append(buttonContainer);
 }
 
+
 function removeEditor(buttonContainer) {
     tinymce.remove('#editor-container');
 

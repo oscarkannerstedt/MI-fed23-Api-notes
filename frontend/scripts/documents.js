@@ -1,5 +1,6 @@
 import { showEditor} from "./documentEditor.js";
 import { deleteDocument } from "./deleteDocument.js";
+import { submitDocument, createDocumentForm } from "./createDocument.js";
 
 
 async function renderUserDocuments(userId) {
@@ -12,6 +13,7 @@ async function renderUserDocuments(userId) {
     createDocumentButton.textContent = 'Create Document';
 
     createDocumentButton.addEventListener('click', () => {
+        createDocumentForm();
         console.log("click on createDocumentButton");
     })
 
@@ -106,4 +108,4 @@ async function fetchUserDocuments(userId) {
 
 
 
-export {fetchUserDocuments, renderUserDocuments, renderSingleDocument};
+export {fetchUserDocuments, renderUserDocuments, renderSingleDocument, submitDocument};

@@ -67,6 +67,7 @@ router.post('/', (req, res) => {
     })
 });
 
+
 //Update document
 router.put('/:id', (req, res) => {
     const documentId = req.params.id;
