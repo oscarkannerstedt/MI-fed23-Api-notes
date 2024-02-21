@@ -7,6 +7,16 @@ async function renderUserDocuments(userId) {
     const documentsContainer = document.getElementById('documents-container');
     documentsContainer.innerHTML = '';
 
+    const createDocumentButton = document.createElement('button');
+    createDocumentButton.classList.add('create-document-button');
+    createDocumentButton.textContent = 'Create Document';
+
+    createDocumentButton.addEventListener('click', () => {
+        console.log("click on createDocumentButton");
+    })
+
+    documentsContainer.appendChild(createDocumentButton);
+
     documents.forEach(doc => {
         
         const documentElement = document.createElement('div');
@@ -20,7 +30,7 @@ async function renderUserDocuments(userId) {
 
 
         documentElement.append(documentName, createDate);
-        documentsContainer.appendChild(documentElement);
+        documentsContainer.append(documentElement);
 
         documentElement.addEventListener("click", () => {
             renderSingleDocument(doc);
@@ -75,7 +85,6 @@ function renderSingleDocument(doc) {
     documentsContainer.appendChild(documentElement);
 }
 
-
 async function fetchUserDocuments(userId) {
     try {
         // const response = await fetch(`http://localhost:3000/documents/${userId}`);
@@ -90,9 +99,7 @@ async function fetchUserDocuments(userId) {
         console.log("err", err);
         return;
     }
-}
-
-
+};
 
 // fetchUserDocuments(1);
 

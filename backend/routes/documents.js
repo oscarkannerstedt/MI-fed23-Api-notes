@@ -31,7 +31,7 @@ router.get('/:userId', (req, res) => {
 
         const query = "SELECT * FROM documents WHERE userId = ? AND deleted = 0";
 
-        connection.query(query, [userId], (err, data) => {
+        connection.query(query, userId, (err, data) => {
             if (err) {
                 console.log("err", err);
                 res.status(500).json({error: "Error while getting documents from specific user"});
