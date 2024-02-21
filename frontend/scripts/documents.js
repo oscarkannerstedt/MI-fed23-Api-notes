@@ -89,8 +89,7 @@ function renderSingleDocument(doc) {
 
 async function fetchUserDocuments(userId) {
     try {
-        // const response = await fetch(`http://localhost:3000/documents/${userId}`);
-        const response = await fetch('http://localhost:3000/documents');
+        const response = await fetch(`http://localhost:3000/documents/${userId}`);
         if (!response.ok) {
             throw new Error("Failed to fetch user documents");
         }
@@ -99,13 +98,9 @@ async function fetchUserDocuments(userId) {
         return data;
     } catch (err) {
         console.log("err", err);
-        return;
+        return [];
     }
 };
-
-// fetchUserDocuments(1);
-
-
 
 
 export {fetchUserDocuments, renderUserDocuments, renderSingleDocument, submitDocument};

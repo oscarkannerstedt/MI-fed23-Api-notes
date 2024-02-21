@@ -1,6 +1,7 @@
 import { init } from "../script.js";
 
 const loginForm = document.getElementById('login-form');
+const createUserForm = document.getElementById('create-user-form');
 
 function renderLoginForm() {
     const emailInput = document.createElement('input');
@@ -56,6 +57,7 @@ async function logInUser(user) {
             localStorage.setItem('user', JSON.stringify(loggedUser));
             console.log("Succesfully logged in");
             loginForm.innerHTML = "";
+            createUserForm.innerHTML = "";
             init();
     })
     .catch((err) => {

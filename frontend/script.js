@@ -6,12 +6,13 @@ import { fetchUserDocuments, renderUserDocuments } from './scripts/documents.js'
 
 
 function init() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
-    if (user) {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    if (storedUser && storedUser.user && storedUser.user.userId) {
         console.log('User is logged in');
+        const userId = storedUser.user.userId;
         renderLogOutBtn();
-        renderUserDocuments(user.userId);
+        renderUserDocuments(userId);
     } else {
         console.log('User is not logged in');
         renderLoginForm();
