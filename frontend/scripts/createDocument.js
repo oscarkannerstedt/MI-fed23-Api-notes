@@ -13,7 +13,6 @@ function showEmpytEditor() {
     const saveButton = document.createElement('button');
     saveButton.textContent = 'Save';
     saveButton.addEventListener('click', () => {
-        // Lägg till funktion för att spara ett nytt dokument
         submitDocument();
         console.log("Save button clicked");
     });
@@ -58,11 +57,12 @@ function createDocumentForm() {
 }
 
 function submitDocument() {
-    const documentName = document.getElementById('document-name').value;
-    const documentContent = tinymce.get('empty-editor-container').getContent();
-
-    const userId = JSON.parse(localStorage.getItem('user')).userId;
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const userId = storedUser.user.userId;
     console.log("userId", userId);
+
+    const documentName = document.getElementById('document-name').value;
+    const documentContent = tinymce.get('empty-editor-container').getContent({ format: 'text'});
 
     createDocument(userId, documentName, documentContent);
 }
@@ -82,7 +82,7 @@ async function createDocument(userId, documentName, documentContent) {
     });
 
     const data = await response.json();
-    console.log("data.message", data.message);
+    console.log("data", data);
     renderUserDocuments(userId);
     } catch (err) {
         console.log("err", err);
