@@ -21,41 +21,20 @@
         .login-form {
             display: flex;
             flex-direction: column;
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
             margin-bottom: 0;
         }
 
         .create-user-form input,
         .login-form input {
-            padding: 6px;
             margin-bottom: 6px;
-            border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 12px;
         }
 
         .create-user-form button,
-        .login-form button {
+        .login-form .log-in-button {
             padding: 5px 10px;
-            background-color: rgb(0, 123, 255);
-            color: white;
-            border: none;
-            border-radius: 4px;
             font-size: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
         }
-
-        .create-user-form button:hover,
-        .login-form button:hover {
-            background-color: #007bff;
-        }
-    }
-
-    .log-out-button {
-        align-self: center;
-        margin-right: 20px;
     }
 }
