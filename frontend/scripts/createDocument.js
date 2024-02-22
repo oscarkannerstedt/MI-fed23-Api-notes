@@ -35,17 +35,6 @@ function showEmpytEditor() {
     editorContainer.parentElement.append(buttonContainer);
 }
 
-function goBack(buttonContainer) {
-    tinymce.remove('#empty-editor-container');
-
-    buttonContainer.remove();
-
-    const documentNameContainer = document.getElementById('document-name-container');
-    documentNameContainer.remove();
-
-    renderUserDocuments(userId);
-}
-
 function createDocumentForm() {
 
     const documentsContainer = document.getElementById('documents-container');
@@ -60,14 +49,30 @@ function createDocumentForm() {
     nameInput.id = 'document-name';
     nameInput.setAttribute('name', 'document-name');
 
-    const documentNameContainer = document.getElementById('document-name-container');
-    documentNameContainer.append(nameLabel, nameInput);
+    const documentName = document.getElementById('document-name-container');
+    documentName.append(nameLabel, nameInput);
 
     showEmpytEditor();
+}
 
+function goBack(buttonContainer) {
+    const documentsContainer = document.getElementById('documents-container');
+    documentsContainer.innerHTML = '';
+
+    tinymce.remove('#empty-editor-container');
+
+    buttonContainer.remove();
+
+    const documentNameContainer = document.getElementById('document-name-container');
+    documentNameContainer.remove();
+
+    renderUserDocuments(userId);
 }
 
 function submitDocument() {
+    const documentsContainer = document.getElementById('documents-container');
+    documentsContainer.innerHTML = '';
+
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const userId = storedUser.user.userId;
 

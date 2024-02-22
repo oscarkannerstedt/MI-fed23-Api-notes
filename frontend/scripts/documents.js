@@ -2,6 +2,9 @@ import { showEditor} from "./documentEditor.js";
 import { deleteDocument } from "./deleteDocument.js";
 import { submitDocument, createDocumentForm } from "./createDocument.js";
 
+const storedUser = JSON.parse(localStorage.getItem('user'));
+const userId = storedUser.user.userId;
+
 
 async function renderUserDocuments(userId) {
     const documents = await fetchUserDocuments(userId);
@@ -78,7 +81,7 @@ function renderSingleDocument(doc) {
         .then((deleted) => {
             if (deleted) {
                 console.log("document deleted");
-                renderUserDocuments();
+                renderUserDocuments(userId);
             }
         })
     });
