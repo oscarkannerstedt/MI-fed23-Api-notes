@@ -1,2 +1,2 @@
-phpMyAdmin user = doc_library
+phpMyAdmin user = doc_library,
 password = doc_library

@@ -7,7 +7,7 @@ function renderLogOutBtn() {
     const logOutButton = document.createElement('button');
     logOutButton.classList.add('log-out-button');
 
-    logOutButton.innerText = 'log out';
+    logOutButton.innerText = 'Log Out';
 
     loginForm.append(logOutButton);
 

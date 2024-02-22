@@ -1,5 +1,8 @@
 import { renderSingleDocument, renderUserDocuments } from "./documents.js";
 
+const storedUser = JSON.parse(localStorage.getItem('user'));
+const userId = storedUser.user.userId;
+
 function showEditor(documentContent, id, documentName) {
     tinymce.init({
         selector: '#editor-container',
@@ -32,13 +35,13 @@ function showEditor(documentContent, id, documentName) {
     editorContainer.parentElement.append(buttonContainer);
 }
 
-
 function removeEditor(buttonContainer) {
+    tinymce.get('editor-container').setContent('');
     tinymce.remove('#editor-container');
 
     buttonContainer.remove();
 
-    renderUserDocuments();
+    renderUserDocuments(userId);
 };
 
 async function saveDocument(id, documentName, documentContent) {

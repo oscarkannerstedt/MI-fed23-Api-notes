@@ -9,8 +9,8 @@ function init() {
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
     if (storedUser && storedUser.user && storedUser.user.userId) {
-        console.log('User is logged in');
         const userId = storedUser.user.userId;
+        console.log('User is logged in', storedUser);
         renderLogOutBtn();
         renderUserDocuments(userId);
     } else {
