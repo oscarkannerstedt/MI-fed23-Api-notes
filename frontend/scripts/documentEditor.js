@@ -6,7 +6,7 @@ const userId = storedUser.user.userId;
 function showEditor(documentContent, id, documentName) {
     tinymce.init({
         selector: '#editor-container',
-        height: 400,
+        height: 500,
         setup: function (editor) {
             editor.on('init', function () {
                 editor.setContent(documentContent);

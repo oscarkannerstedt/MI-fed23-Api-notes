@@ -4,7 +4,7 @@ import { renderUserDocuments } from "./documents.js";
 function showEmpytEditor() {
     tinymce.init({
         selector: '#empty-editor-container',
-        height: 400
+        height: 500
     });
 
     const buttonContainer = document.createElement('div');
@@ -35,10 +35,6 @@ function createDocumentForm() {
     const documentsContainer = document.getElementById('documents-container');
     documentsContainer.innerHTML = '';
 
-
-    const editorContainer = document.createElement('div');
-    editorContainer.id = 'editor-container';
-
     const nameLabel = document.createElement('label');
     nameLabel.setAttribute('for', 'document-name');
     nameLabel.textContent = 'Document Name:';
@@ -48,9 +44,8 @@ function createDocumentForm() {
     nameInput.id = 'document-name';
     nameInput.setAttribute('name', 'document-name');
 
-    document.body.appendChild(nameLabel);
-    document.body.appendChild(nameInput);
-    document.body.appendChild(editorContainer);
+    const documentNameContainer = document.getElementById('document-name-container');
+    documentNameContainer.append(nameLabel, nameInput);
 
     showEmpytEditor();
 
@@ -59,7 +54,6 @@ function createDocumentForm() {
 function submitDocument() {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const userId = storedUser.user.userId;
-    console.log("userId", userId);
 
     const documentName = document.getElementById('document-name').value;
     const documentContent = tinymce.get('empty-editor-container').getContent({ format: 'text'});
