@@ -84,7 +84,7 @@
 }
 
 /*-------------------------------------*/
-/*-------Showing all documents--------*/
+/*-------------Documents--------------*/
 /*-------------------------------------*/
 
 .document-box {
@@ -169,6 +169,48 @@
         color: #fff;
     }
 
+}
+
+/*-------------------------------------*/
+/*------------Create document---------*/
+/*-------------------------------------*/
+
+.document-name-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 16px;
+
+    label {
+        margin-bottom: 5px;
+    }
+
+    input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+}
+
+.go-back-button,
+.save-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.go-back-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.save-button {
+    background-color: #3498db;
+    color: #fff;
 }
 
 /*-------------------------------------*/

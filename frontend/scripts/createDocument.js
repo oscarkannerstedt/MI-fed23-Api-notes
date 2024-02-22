@@ -1,6 +1,9 @@
 import { showEditor } from "./documentEditor.js";
 import { renderUserDocuments } from "./documents.js";
 
+const storedUser = JSON.parse(localStorage.getItem('user'));
+const userId = storedUser.user.userId;
+
 function showEmpytEditor() {
     tinymce.init({
         selector: '#empty-editor-container',
@@ -11,16 +14,18 @@ function showEmpytEditor() {
     buttonContainer.classList.add('button-container');
 
     const saveButton = document.createElement('button');
-    saveButton.textContent = 'Save';
+    saveButton.textContent = 'Save Document';
+    saveButton.classList.add('save-button');
     saveButton.addEventListener('click', () => {
         submitDocument();
         console.log("Save button clicked");
     });
 
     const goBackButton = document.createElement('button');
-    goBackButton.textContent = 'Back';
+    goBackButton.textContent = 'Go Back';
+    goBackButton.classList.add('go-back-button');
     goBackButton.addEventListener('click', () => {
-        // Lägg till funktion för att gå tillbaka
+        goBack(buttonContainer);
         console.log("Back button clicked");
     });
 
@@ -28,6 +33,17 @@ function showEmpytEditor() {
 
     const editorContainer = document.getElementById('editor-container');
     editorContainer.parentElement.append(buttonContainer);
+}
+
+function goBack(buttonContainer) {
+    tinymce.remove('#empty-editor-container');
+
+    buttonContainer.remove();
+
+    const documentNameContainer = document.getElementById('document-name-container');
+    documentNameContainer.remove();
+
+    renderUserDocuments(userId);
 }
 
 function createDocumentForm() {

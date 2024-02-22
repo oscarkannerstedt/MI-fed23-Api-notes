@@ -18,13 +18,15 @@ function showEditor(documentContent, id, documentName) {
     buttonContainer.classList.add('button-container');
 
     const saveButton = document.createElement('button');
-    saveButton.textContent = 'Save';
+    saveButton.textContent = 'Save Document';
+    saveButton.classList.add('save-button');
     saveButton.addEventListener('click', () => {
         saveDocument(id, documentName);
     });
 
     const goBackButton = document.createElement('button');
-    goBackButton.textContent = 'Back';
+    goBackButton.textContent = 'Go Back';
+    goBackButton.classList.add('go-back-button');
     goBackButton.addEventListener('click', () => {
         removeEditor(buttonContainer);
     })
