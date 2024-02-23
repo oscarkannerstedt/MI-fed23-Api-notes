@@ -1,8 +1,6 @@
 import { showEditor } from "./documentEditor.js";
 import { renderUserDocuments } from "./documents.js";
 
-const storedUser = JSON.parse(localStorage.getItem('user'));
-const userId = storedUser.user.userId;
 
 function showEmpytEditor() {
     tinymce.init({
@@ -66,6 +64,8 @@ function goBack(buttonContainer) {
     const documentNameContainer = document.getElementById('document-name-container');
     documentNameContainer.remove();
 
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const userId = storedUser.user.userId;
     renderUserDocuments(userId);
 }
 
