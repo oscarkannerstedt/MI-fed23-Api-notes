@@ -1,7 +1,8 @@
 # Document Management 
 
-
-
+#### Database
+- User = doc_library
+- Password = doc_library
 
 ## Description
 This is a school project in the API-development course where i was tasked with creating a prototype for a
