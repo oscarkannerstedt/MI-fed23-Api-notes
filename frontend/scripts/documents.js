@@ -73,6 +73,9 @@ function renderSingleDocument(doc) {
         console.log("Edit button clicked");
     });
 
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const userId = storedUser.user.userId;
+
     deleteDocumentButton.addEventListener("click", () => {
         deleteDocument(doc.id)
         .then((deleted) => {
