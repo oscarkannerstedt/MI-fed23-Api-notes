@@ -15,7 +15,9 @@ documents, create new documents and edit their documents.
 - Javascript
 - Node.js
 - Express
-- MySQL
+- MySQL2
+- Nodemon
+- Cors
 - TinyMCE Editor
 
 ## Screenshots
@@ -26,3 +28,6 @@ documents, create new documents and edit their documents.
 ![Document](/frontend/img/singleDocument.png "Document ")
 
 ![Edit document](/frontend/img/editDocument.png "Edit document")
+
+## Author
+Oscar Kannerstedt
