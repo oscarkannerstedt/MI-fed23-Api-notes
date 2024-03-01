@@ -77,7 +77,6 @@ function submitDocument() {
     const userId = storedUser.user.userId;
 
     const documentName = document.getElementById('document-name').value;
-    // const documentContent = tinymce.get('empty-editor-container').getContent({ format: 'text'});
     const documentContent = tinymce.get('empty-editor-container').getContent();
     createDocument(userId, documentName, documentContent);
 }

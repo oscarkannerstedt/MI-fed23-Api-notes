@@ -51,7 +51,7 @@ function renderSingleDocument(doc) {
     documentName.textContent = doc.documentName;
 
     const documentContent = document.createElement('p');
-    documentContent.textContent = doc.documentContent;
+    documentContent.innerHTML = doc.documentContent;
 
     const createDate = document.createElement('p');
     createDate.textContent = `Created: ${new Date(doc.createDate).toLocaleDateString()}`;

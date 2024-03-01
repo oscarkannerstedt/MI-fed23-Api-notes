@@ -48,7 +48,6 @@ function removeEditor(buttonContainer) {
 
 async function saveDocument(id, documentName, documentContent) {
     try {
-        // const documentContent = tinymce.get('editor-container').getContent({ format: 'text' });
         const documentContent = tinymce.get('editor-container').getContent();
 
         await fetch(`http://localhost:3000/documents/${id}`, {
